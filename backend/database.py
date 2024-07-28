@@ -1,5 +1,6 @@
 from pymongo.mongo_client import MongoClient
 import certifi
+import json
 import ssl
 
 #store server access string in var
@@ -14,11 +15,12 @@ collection = db["skibidibb"]
 #update document with dict2 from frontend
 def update(changes):
     fridge = collection.find_one({"_id": 0})
-    
+    changes = json.loads(changes)
+
     updated_fridge = {key: fridge.get(key, 0) + changes.get(key, 0) for key in set(fridge) | set(changes)}
-    
+
     collection.replace_one({"_id":0}, updated_fridge)  
-    
+
     return updated_fridge
 
 

@@ -17,7 +17,6 @@ function App() {
         return (
           <div style={{ flex: 1 }}>
             <ScrollableWindow />
-            <RecipeItem />
           </div>
         );
       default:

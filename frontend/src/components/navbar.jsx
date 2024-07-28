@@ -1,5 +1,5 @@
 import React from 'react';
-import logoPlaceholder from '../assets/logo-placeholder.png';
+import logoPlaceholder from '../assets/image.png';
 import './navbar.css';
 
 const NavBar = ({ onNavClick }) => {

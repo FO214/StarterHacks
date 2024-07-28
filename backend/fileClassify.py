@@ -20,7 +20,7 @@ def get_item(base64_image):
         "content": [
           {
             "type": "text",
-            "text": "Here is a receipt, please scan it and return a json of all of the ingredients you found in it, do it in the format \{ food: amount \}, please ONLY return the JSON, NO EXTRA WRITING WHAT SO EVER."
+            "text": "Here is a receipt, please scan it and return a json of all of the ingredients you found in it, do it in the format \{ food: amount \}, please ONLY return the JSON, NO EXTRA WRITING WHAT SO EVER. Do not include ANYTHING outside of the json, your return should only be {'name':amount}, not even a markdown json classifier"
           },
           {
             "type": "image_url",
@@ -36,4 +36,4 @@ def get_item(base64_image):
 
   response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
 
-  return response.json()
+  return response.json()['choices'][0]['message']['content']
