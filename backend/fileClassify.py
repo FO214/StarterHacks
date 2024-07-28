@@ -20,7 +20,7 @@ def get_item(base64_image):
         "content": [
           {
             "type": "text",
-            "text": "What is the one food that you see in this picture, please ONLY return what the food is, for example, if you see apples, please just return \"apples\"."
+            "text": "Here is a receipt, please scan it and return a json of all of the ingredients you found in it, do it in the format \{ food: amount \}, please ONLY return the JSON, NO EXTRA WRITING WHAT SO EVER."
           },
           {
             "type": "image_url",
