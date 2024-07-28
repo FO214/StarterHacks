@@ -20,5 +20,5 @@ def update(changes):
     
     return updated_fridge
 
-print(update({"bananas":-1,"apple":2}))
+#print(update({"bananas":-1,"apple":2}))
 

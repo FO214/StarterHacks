@@ -17,33 +17,8 @@ api_key = os.environ.get("OPENAI_API_KEY")
 
 # make tools
 search = TavilySearchResults(max_results=5)
-'''
-@tool
-def add_tool(data):
-    """
-    Adds the input data into the database given the data
-    """
-    return add(data)
 
-
-@tool
-def remove_tool(data):
-    """
-    Removes the input data in the database given the data
-    """
-    return remove(data)
-
-
-@tool
-def get_all_tool(data):
-    """
-    Returns all of the items in the database
-    """
-    return get_all(data)
-
-
-tools = [search, add_tool, remove_tool, get_all_tool]
-'''
+# make the agent able to manipulate the db
 
 tools = [search]
 prompt = ChatPromptTemplate.from_messages(
@@ -75,4 +50,4 @@ agent = (
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-print(agent_executor.invoke({"input":"give me a recipie that I can make thats high in protein, I have, chicken, vegetables, rice, and noodles, what can I eat? Can you also include the prep time as well as the total cooking time?"}))
+#print(agent_executor.invoke({"input":"give me a recipie that I can make thats high in protein, I have, chicken, vegetables, rice, and noodles, what can I eat? Can you also include the prep time as well as the total cooking time?"}))
