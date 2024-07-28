@@ -21,5 +21,4 @@ def update(changes):
     
     return updated_fridge
 
-#print(update({"bananas":1,"apple":2, "chicken breast":3, "ground beef": 1, "white rice":2, "noodles":10, "peppers":5, "onions":3 }))
 
