@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './popUp.css'; // Import the CSS file
+import './dropDownOptionUpload.css'; // Import the CSS file
+import ImageUploader from './imageUploader';
 
-const PopupWindow = (props) => {
+const DropDownOptionUpload = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopup = () => {
@@ -17,8 +18,7 @@ const PopupWindow = (props) => {
                 <div className="popup-overlay" onClick={togglePopup}>
                     <div className="popup-window" onClick={e => e.stopPropagation()}>
                         <span className="close-button" onClick={togglePopup}>&times;</span>
-                        <h2>{props.title}</h2>
-                        <p>{props.subtext}</p>
+                        <ImageUploader />
                     </div>
                 </div>
             )}
@@ -26,4 +26,4 @@ const PopupWindow = (props) => {
     );
 };
 
-export default PopupWindow;
+export default DropDownOptionUpload;
