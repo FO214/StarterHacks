@@ -1,14 +1,14 @@
 import React from 'react';
-import logoPlaceholder from '../assets/logo-placeholder.png'
+import logoPlaceholder from '../assets/logo-placeholder.png';
 import './navbar.css';
 
-const NavBar = () => {
+const NavBar = ({ onNavClick }) => {
   return (
     <nav>
       <img src={logoPlaceholder} id="logo" alt="logo image"></img>
       <ul className="nav-list">
-        <li className="nav-item underline">My Fridge</li>
-        <li className="nav-item underline">Recipies</li>
+        <li className="nav-item underline" onClick={() => onNavClick('myfridge')}>My Fridge</li>
+        <li className="nav-item underline" onClick={() => onNavClick('recipes')}>Recipes</li>
       </ul>
     </nav>
   );

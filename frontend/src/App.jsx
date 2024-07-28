@@ -1,22 +1,41 @@
-// import { useState } from 'react'
-import MyFridge from './pages/myfridge'
-import './App.css'
-import RecipeItem from './components/recipeItem'
+import React, { useState } from 'react';
+import MyFridge from './pages/myfridge';
+import './App.css';
+import RecipeItem from './components/recipeItem';
 import ScrollableWindow from './components/recipeHist';
-
-//maybe delete depedning on if we use a popupwindow
-import PopupWindow from './components/popUp';
-
-import DropdownMenu from './components/dropDown';
+import Chatbot from './components/chatbot';
+import NavBar from './components/navbar';
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [activeComponent, setActiveComponent] = useState('myfridge');
+
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case 'myfridge':
+        return <MyFridge />;
+      case 'recipes':
+        return (
+          <div style={{ flex: 1 }}>
+            <ScrollableWindow />
+            <RecipeItem />
+          </div>
+        );
+      default:
+        return <MyFridge />;
+    }
+  };
 
   return (
     <>
-    <MyFridge />
+      <NavBar onNavClick={setActiveComponent} />
+      <div style={{ display: 'flex', height: '100vh', width: '70vw' }}>
+        {renderComponent()}
+        <div style={{ flex: 1 }}>
+          <Chatbot />
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
