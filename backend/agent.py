@@ -7,7 +7,7 @@ from langchain.agents.format_scratchpad.openai_tools import (
     format_to_openai_tool_messages,
 )
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
-# import add, remove, get_all from database
+from database import collection, update
 from dotenv import load_dotenv
 import os
 
@@ -16,11 +16,27 @@ os.environ["TAVILY_API_KEY"] = "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"
 api_key = os.environ.get("OPENAI_API_KEY")
 
 # make tools
-search = TavilySearchResults(max_results=5)
+search = TavilySearchResults(max_results=2)
 
 # make the agent able to manipulate the db
 
-tools = [search]
+@tool 
+def get_fridge_tool():
+    '''
+    This will return what the user has in their fridge at the current moment, explaining what they can use for cooking.
+    '''
+    return collection.find_one({"_id": 0})
+
+@tool
+def update_tool(changes):
+    '''
+    given the changes to be made in a JSON format of {name: change_amount}, if the amount is negative, that is okay, just input it into the function and itll work out and update the count.
+    '''
+    return update(changes)
+
+
+tools = [search, get_fridge_tool, update_tool]
+
 prompt = ChatPromptTemplate.from_messages(
     [
         (
@@ -50,4 +66,4 @@ agent = (
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-#print(agent_executor.invoke({"input":"give me a recipie that I can make thats high in protein, I have, chicken, vegetables, rice, and noodles, what can I eat? Can you also include the prep time as well as the total cooking time?"}))
+print(agent_executor.invoke({"input":"check my fridge and give me some recipies i can make to eat using all of the ingredients I have"}))
