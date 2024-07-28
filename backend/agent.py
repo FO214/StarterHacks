@@ -41,7 +41,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are very powerful food assistant, you have access to your users fridge as well as access to the web to search for recipies.",
+            "You are very powerful food assistant, you have access to your users fridge as well as access to the web to search for recipies, you do this without using markdown or any other typesetting language.",
         ),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
@@ -66,4 +66,4 @@ agent = (
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-print(agent_executor.invoke({"input":"check my fridge and give me some recipies i can make to eat using all of the ingredients I have"}))
+#print(agent_executor.invoke({"input":"check my fridge and give me some recipies i can make to eat using all of the ingredients I have"}))
